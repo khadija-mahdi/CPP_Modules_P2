@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
 #include <iterator>
 
 class Span{
@@ -22,11 +23,11 @@ public:
 /*-------------------------------------------------------------------------------*/
 	Span(const unsigned int &N);
 	void addNumber(int N);
-	// unsigned int shortestSpan();
-	// unsigned int longestSpan();
+	unsigned int shortestSpan();
+	unsigned int longestSpan();
 	void printSpan(){
 		for(size_t ptr = 0 ; ptr <  N; ++ptr){
-			std::cout << *ptr << std::endl;
+			std::cout << span[ptr] << std::endl;
 		}
     }
 };
