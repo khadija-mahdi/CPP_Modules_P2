@@ -1,0 +1,54 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kmahdi <kmahdi@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/08/29 20:07:57 by kmahdi            #+#    #+#              #
+#    Updated: 2023/09/12 05:04:09 by kmahdi           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = convert
+
+SRC =  ScalarConverter.cpp  main.cpp utils.cpp
+
+OBJ= $(SRC:.cpp=.o)
+
+OBJ_DIR = objects
+
+OBJ= $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
+
+CPP = c++
+
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+NC = \033[0m
+
+RM = rm -f
+
+all: $(NAME)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@$(CPP) ${CPPFLAGS} -c $< -o $@
+
+$(NAME): $(OBJ)
+	@echo "$(GREEN)Compiling...$(NC)"
+	@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
+	@echo "$(GREEN)Compiled.$(NC)"
+
+clean:
+	@$(RM) $(OBJ)
+	@$(RM) -rf $(OBJ_DIR)
+	@echo "$(RED)Cleaned up object files!$(NC)"
+
+fclean: clean
+	@$(RM) $(NAME)
+	@$(RM) -rf $(OBJ_DIR)
+	@echo "$(RED)Removed executable!$(NC)"
+
+re: fclean all
