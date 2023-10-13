@@ -7,7 +7,7 @@
 
 class Span{
 	unsigned int N;
-	int *span;
+	std::list<int> span;
 public:
 
 /*-----------------------------------------------------------------------------*/
@@ -24,11 +24,9 @@ public:
 	void addNumber(int N);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	void printSpan(){
-		for(size_t ptr = 0 ; ptr <  N; ++ptr){
-			std::cout << span[ptr] << std::endl;
-		}
-    }
+	void addNumbers(unsigned int pos);
+	void printSpan();
+	std::list<int> getSpan();
 };
 
 #endif

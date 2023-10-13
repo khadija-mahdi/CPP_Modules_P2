@@ -5,7 +5,6 @@
 /*-----------------------------------------------------------------------------*/
 
 Span::Span(){
-	this->span = new int[0];
 }
 
 Span::Span(const Span &Span){
@@ -22,19 +21,18 @@ Span& Span::operator=(const Span &Span){
 }
 
 Span::~Span(){
-		delete[] span;
 }
 /*-------------------------------------------------------------------------------------------*/
 
-Span::Span(const unsigned int &N):N(N){
-	this->span = new int[N];
+Span::Span(const unsigned int &N):N(N), span(N){
 }
 
 void Span::addNumber(int Number){
 	static unsigned int pos = 0;
 	if (pos < N)
 	{
-		this->span[pos] = Number;
+		this->span.pop_front();
+		span.push_back(Number);
 		pos++;
 	}
 	else
@@ -42,25 +40,49 @@ void Span::addNumber(int Number){
 }
 
 unsigned int Span::shortestSpan(){
-	unsigned int def;
-	unsigned int def2 = 4294967295;
-	int::iter span::iterator
-	std::sort(span, span + N);
-	for (unsigned int i = 0; i < N; ++i){
-		if (i + 1 < N && static_cast<unsigned int>((span[i + 1] - span[i])) < def)
-			def = (span[i + 1] - span[i]);
-		if (i + 1 < N && i + 2 < N && static_cast<unsigned int>((span[i + 2] - span[i + 1])) < def)
-			def2 = (span[i + 2] - span[i + 1]);
-		if (def2 < def)
-			def = def2;
+	if (N <= 1)
+		throw std::runtime_error("no span can be found");
+	span.sort();
+	std::list<int>::iterator ptr = this->span.begin();
+	int at = *std::next(ptr) - *ptr;
+	int def = at;
+	while(ptr != std::prev(span.end())){
+		if ((*std::next(ptr) - *ptr) < at)
+			def = (*std::next(ptr) - *ptr);
+		ptr++;
 	}
 	return def;
 }
 
-
-
-
 unsigned int Span::longestSpan(){
-	std::sort(span, span + N);
-	return (span[N - 1] - span[0]);
-} 
+	if (N <= 1)
+		throw std::runtime_error("no span can be found");
+	this->span.sort();
+	return (this->span.back() - this->span.front());
+}
+
+
+void Span::addNumbers(unsigned int pos){
+	if (pos < N)
+	{
+		while(pos < N){
+			this->span.pop_front();
+			span.push_back(1337);
+			pos++;
+		}
+	}
+	else
+		throw std::runtime_error("out of range");
+}
+
+void Span::printSpan(){
+	std::list<int>::iterator ptr;
+	for(ptr = this->span.begin() ; ptr != this->span.end(); ++ptr){
+		std::cout << *ptr << std::endl;
+		std::cout << "--------------------" <<std::endl;
+	}
+}
+
+std::list<int> Span::getSpan(){
+	return span;
+}
