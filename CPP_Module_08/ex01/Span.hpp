@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <list>
-#include <algorithm>
 #include <iterator>
 
 class Span{

@@ -44,17 +44,21 @@ void Span::addNumber(int Number){
 unsigned int Span::shortestSpan(){
 	unsigned int def;
 	unsigned int def2 = 4294967295;
+	int::iter span::iterator
 	std::sort(span, span + N);
 	for (unsigned int i = 0; i < N; ++i){
-		if (i + 1 < N && abs(span[i + 1] - span[i]) < def)
-			def = abs(span[i + 1] - span[i]);
-		if (i + 1 < N && i + 2 < N && abs(span[i + 2] - span[i + 1]) < def)
-			def2 = abs(span[i + 2] - span[i + 1]);
+		if (i + 1 < N && static_cast<unsigned int>((span[i + 1] - span[i])) < def)
+			def = (span[i + 1] - span[i]);
+		if (i + 1 < N && i + 2 < N && static_cast<unsigned int>((span[i + 2] - span[i + 1])) < def)
+			def2 = (span[i + 2] - span[i + 1]);
 		if (def2 < def)
 			def = def2;
 	}
 	return def;
 }
+
+
+
 
 unsigned int Span::longestSpan(){
 	std::sort(span, span + N);
