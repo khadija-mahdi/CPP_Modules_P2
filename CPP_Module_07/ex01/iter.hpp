@@ -10,13 +10,13 @@
 #include <cstdlib>
 #include <ctime>
 
-template<typename fun>
-void print(const fun& arrayElement){
+template<typename T>
+void printElements(T const & arrayElement){
     std::cout << "Array Element is : " << arrayElement << std::endl;
 }
 
-template <typename Array ,typename FUN>
-void iter(Array array[], size_t length, FUN fun){
+template <typename T>
+void iter(T array[], size_t length, void (*fun)(T const &)){
     for (size_t i = 0; i < length; i++)
         fun(array[i]);
 }

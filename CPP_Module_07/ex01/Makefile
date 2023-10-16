@@ -6,11 +6,11 @@
 #    By: kmahdi <kmahdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 20:07:57 by kmahdi            #+#    #+#              #
-#    Updated: 2023/09/12 06:05:48 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/10/16 03:49:58 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = Iter
 
 SRC = main.cpp
 

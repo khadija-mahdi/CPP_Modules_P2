@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-template<typename T> // template prefix;
+template<typename T>
 class Array{
 private:
     T *array;
@@ -20,44 +20,44 @@ public:
         }
     }
     
-    Array(const Array &NArray){
-        delete array;
-        this->array = new T[NArray.length];
-        for(size_t i = 0; i < length; i++)
-            this->array[i] = NArray.array[i];
-        this->length = NArray.length;
-        *this = NArray;
+    Array(const Array &NArray) : length(NArray.length) {
+        array = new T[length];
+        for (size_t i = 0; i < length; i++)
+            array[i] = NArray.array[i];
     }
-    
-    Array &operator=(const Array &NArray){
-        if(*this != &NArray){
-            delete array;
-            this->array = new T[NArray.length];
-            for(size_t i = 0; i < length; i++)
-                this->array[i] = NArray.array[i];
-            this->length = NArray.length;
-        }
+
+    Array &operator=(const Array &NArray) {
+        if (this == &NArray)
+            return *this;
+        delete[] array;
+
+        length = NArray.length;
+        array = new T[length];
+        for (size_t i = 0; i < length; i++)
+            array[i] = NArray.array[i];
         return *this;
     }
-    
-    void printArray() {
-        for (size_t i = 0; i < length; i++)
-            std::cout << array[i] << std::endl;
-    }
+        
     void putArray(T arr , size_t i){
         if (i < length)
-        {
             array[i] = arr;
-        }
         else
             throw ("out of range");
     }
+
     size_t size() const{
         return length;
     }
     ~Array(){
         delete[] array;
     }
+
+    T& operator[](size_t index) {
+        if (index >= 0 && index < length) {
+            return array[index];
+        } else 
+            throw ("Index out of bounds");
+}
 };
 
 #endif
