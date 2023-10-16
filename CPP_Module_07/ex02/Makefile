@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 20:07:57 by kmahdi            #+#    #+#              #
-#    Updated: 2023/09/13 12:18:43 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/10/16 05:24:30 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ= $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
 
 CPP = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 GREEN = \033[0;32m
 RED = \033[0;31m

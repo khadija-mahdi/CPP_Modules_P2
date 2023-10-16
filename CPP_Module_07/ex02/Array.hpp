@@ -42,7 +42,7 @@ public:
         if (i < length)
             array[i] = arr;
         else
-            throw ("out of range");
+            throw std::runtime_error("Index out of bounds");
     }
 
     size_t size() const{
@@ -56,7 +56,7 @@ public:
         if (index >= 0 && index < length) {
             return array[index];
         } else 
-            throw ("Index out of bounds");
+            throw std::runtime_error("Index out of bounds");
 }
 };
 

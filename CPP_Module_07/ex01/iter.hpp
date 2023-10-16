@@ -11,7 +11,7 @@
 #include <ctime>
 
 template<typename T>
-void printElements(T const & arrayElement){
+void print(T const & arrayElement){
     std::cout << "Array Element is : " << arrayElement << std::endl;
 }
 
