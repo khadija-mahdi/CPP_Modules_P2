@@ -1,4 +1,4 @@
-// #include "Array.hpp"
+#include "Array.hpp"
 
 
 // int main(){
@@ -60,9 +60,6 @@
     //     std::cerr << e.what() << '\n';
     // }
 
-
-#include <iostream>
-#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
