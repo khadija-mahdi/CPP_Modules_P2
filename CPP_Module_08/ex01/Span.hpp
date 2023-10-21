@@ -2,12 +2,13 @@
 #define SPAN_HPP
 
 #include <iostream>
-#include <list>
+#include <vector>
 #include <iterator>
 
 class Span{
 	unsigned int N;
-	std::list<int> span;
+	size_t size;
+	std::vector<int> span;
 public:
 
 /*-----------------------------------------------------------------------------*/
@@ -24,9 +25,8 @@ public:
 	void addNumber(int N);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	void addNumbers(unsigned int pos);
+	void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	void printSpan();
-	std::list<int> getSpan();
 };
 
 #endif

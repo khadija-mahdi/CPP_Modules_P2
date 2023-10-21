@@ -15,7 +15,8 @@ Span& Span::operator=(const Span &Span){
 	if (this != &Span)
 	{
 		this->N = Span.N;
-		this->span = Span.span;
+		this->size = Span.size;
+		this->span = std::vector<int>(Span.span.begin(), Span.span.end());
 	}
 	return *this;
 }
@@ -24,26 +25,24 @@ Span::~Span(){
 }
 /*-------------------------------------------------------------------------------------------*/
 
-Span::Span(const unsigned int &N):N(N), span(N){
+Span::Span(const unsigned int &N):N(N), size(0){
 }
 
 void Span::addNumber(int Number){
-	static unsigned int pos = 0;
-	if (pos < N)
+	if (size < N)
 	{
-		this->span.pop_front();
 		span.push_back(Number);
-		pos++;
+		size++;
 	}
 	else
-		throw std::runtime_error("out of range");
+		throw std::runtime_error("out of range\n");
 }
 
 unsigned int Span::shortestSpan(){
-	if (N <= 1)
+	if (N <= 1 || size <= 1)
 		throw std::runtime_error("no span can be found");
-	span.sort();
-	std::list<int>::iterator ptr = this->span.begin();
+	sort(span.begin(), span.end());
+	std::vector<int>::iterator ptr = this->span.begin();
 	int at = *std::next(ptr) - *ptr;
 	int def = at;
 	while(ptr != std::prev(span.end())){
@@ -55,34 +54,25 @@ unsigned int Span::shortestSpan(){
 }
 
 unsigned int Span::longestSpan(){
-	if (N <= 1)
+	if (N <= 1 || size <= 1)
 		throw std::runtime_error("no span can be found");
-	this->span.sort();
+	sort(span.begin(), span.end());
 	return (this->span.back() - this->span.front());
 }
 
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end){
+	std::vector<int>::iterator it;
+	this->size = 0;
+	for(it = begin; it != end; it++)
+		addNumber(*it);
 
-void Span::addNumbers(unsigned int pos){
-	if (pos < N)
-	{
-		while(pos < N){
-			this->span.pop_front();
-			span.push_back(1337);
-			pos++;
-		}
-	}
-	else
-		throw std::runtime_error("out of range");
 }
 
 void Span::printSpan(){
-	std::list<int>::iterator ptr;
+	std::vector<int>::iterator ptr;
+		std::cout << "\n--------- list : -----------\n " <<std::endl;
 	for(ptr = this->span.begin() ; ptr != this->span.end(); ++ptr){
 		std::cout << *ptr << std::endl;
 		std::cout << "--------------------" <<std::endl;
 	}
-}
-
-std::list<int> Span::getSpan(){
-	return span;
 }
