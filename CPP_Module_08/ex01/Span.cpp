@@ -65,7 +65,6 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 	this->size = 0;
 	for(it = begin; it != end; it++)
 		addNumber(*it);
-
 }
 
 void Span::printSpan(){
