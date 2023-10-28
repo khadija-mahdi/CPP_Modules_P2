@@ -24,7 +24,7 @@ public:
     
     typedef typename container::iterator iterator;
     iterator begin()
-    {
+    { 
         return this->c.begin();
     }
     iterator end()

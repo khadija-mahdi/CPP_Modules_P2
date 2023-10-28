@@ -8,7 +8,7 @@
 class Span{
 	unsigned int N;
 	size_t size;
-	std::vector<int> span;
+	std::vector<long int> span;
 public:
 
 /*-----------------------------------------------------------------------------*/
@@ -22,10 +22,10 @@ public:
 
 /*-------------------------------------------------------------------------------*/
 	Span(const unsigned int &N);
-	void addNumber(int N);
+	void addNumber(long int N);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	void addNumbers(std::vector<long int>::iterator begin, std::vector<long int>::iterator end);
 	void printSpan();
 };
 

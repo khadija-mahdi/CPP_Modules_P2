@@ -4,7 +4,7 @@ int main()
 {
     /*
     {   
-        std::vector<int> v;
+        std::vector<long int> v;
         for (size_t i = 0; i < 11; i++)
             v.push_back(i);
         Span cpy = Span(10);
@@ -33,7 +33,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-    // sp.printSpan();
+    sp.printSpan();
     try
     {
         std::cout << sp.shortestSpan() << std::endl;
@@ -46,7 +46,6 @@ int main()
 
     */
    //    subject example :
-   {}
         Span sp = Span(5);
         try
         {
@@ -58,11 +57,10 @@ int main()
             sp.addNumber(11);
             std::cout << sp.shortestSpan() << std::endl;
             std::cout << sp.longestSpan() << std::endl;
+
         }
         catch(const std::exception& e)
         {
             std::cerr << e.what() << '\n';
         }
-        
-        return 0;
 }

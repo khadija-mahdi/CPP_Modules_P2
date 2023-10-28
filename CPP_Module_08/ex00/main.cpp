@@ -4,13 +4,13 @@
 
 
 int main(){
-    std::vector<int> v;
-    for (int i = 1; i <= 5; i++)
+    std::vector<char> v;
+    for (int i = 'H'; i <= 'N'; i++)
         v.push_back(i);
     try{
-        easyfind(v, 1);
-        easyfind(v, 2);
-        easyfind(v, -1);
+        easyfind(v, 'H');
+        easyfind(v, 'K');
+        easyfind(v, 'l');
     }
     catch(std::exception const& e){
         std::cout << e.what() << std::endl;

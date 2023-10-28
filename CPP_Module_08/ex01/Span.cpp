@@ -16,7 +16,7 @@ Span& Span::operator=(const Span &Span){
 	{
 		this->N = Span.N;
 		this->size = Span.size;
-		this->span = std::vector<int>(Span.span.begin(), Span.span.end());
+		this->span = std::vector<long int>(Span.span.begin(), Span.span.end());
 	}
 	return *this;
 }
@@ -28,7 +28,7 @@ Span::~Span(){
 Span::Span(const unsigned int &N):N(N), size(0){
 }
 
-void Span::addNumber(int Number){
+void Span::addNumber(long int Number){
 	if (size < N)
 	{
 		span.push_back(Number);
@@ -42,13 +42,12 @@ unsigned int Span::shortestSpan(){
 	if (N <= 1 || size <= 1)
 		throw std::runtime_error("no span can be found");
 	sort(span.begin(), span.end());
-	std::vector<int>::iterator ptr = this->span.begin();
-	int at = *std::next(ptr) - *ptr;
-	int def = at;
-	while(ptr != std::prev(span.end())){
-		if ((*std::next(ptr) - *ptr) < at)
-			def = (*std::next(ptr) - *ptr);
-		ptr++;
+	std::vector<long int>::iterator ptr = this->span.begin();
+	long int at = ((*std::next(ptr)) - (*ptr));
+	long int def = at;
+	while(++ptr != std::prev(span.end())){
+		if (((*std::next(ptr)) - (*ptr)) <= def)
+			def = ((*std::next(ptr)) - (*ptr));
 	}
 	return def;
 }
@@ -60,15 +59,15 @@ unsigned int Span::longestSpan(){
 	return (this->span.back() - this->span.front());
 }
 
-void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end){
-	std::vector<int>::iterator it;
+void Span::addNumbers(std::vector<long int>::iterator begin, std::vector<long int>::iterator end){
+	std::vector<long int>::iterator it;
 	this->size = 0;
 	for(it = begin; it != end; it++)
 		addNumber(*it);
 }
 
 void Span::printSpan(){
-	std::vector<int>::iterator ptr;
+	std::vector<long int>::iterator ptr;
 		std::cout << "\n--------- list : -----------\n " <<std::endl;
 	for(ptr = this->span.begin() ; ptr != this->span.end(); ++ptr){
 		std::cout << *ptr << std::endl;
