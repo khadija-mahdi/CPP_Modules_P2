@@ -8,7 +8,7 @@ int main(int ac, char **av){
         RPN RPN;
         try
         {
-            RPN.RPNExpression(std::string(av[1]));
+            RPN.RPNExpression(av[1]);
         }
         catch(const std::exception& e)
         {

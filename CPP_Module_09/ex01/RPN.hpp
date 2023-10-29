@@ -24,9 +24,5 @@ public:
 	~RPN();// destructor
 
 /*-------------------------------------------------------------------------------*/
-    void RPNExpression(std::string expression);
-    void Addition(std::string &value);
-    void multiplication(std::string &value);
-    void Subtraction(std::string &value);
-    void Division(std::string &value);
+    void RPNExpression(char *expression);
 };

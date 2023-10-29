@@ -22,89 +22,42 @@ RPN& RPN::operator=(const RPN &RPN){
 RPN::~RPN(){
 }
 /*------------------------------------------------------------------------------------*/
-void RPN::Addition(std::string &value){
-    if (value == "+"){
-        int first = Data.top();
-        Data.pop();
-        int secund = Data.top();
-        Data.pop();
-        std::cout << secund << " + " << first<< " = " << secund + first << std::endl;
-        Data.push(secund + first);
-        std::cout << Data.top() << std::endl;
-    }
-}
 
-void RPN::multiplication(std::string &value){
-    if (value == "*"){
-        int first;
-        int secund;
-        first = Data.top();
-        Data.pop();
-        secund = Data.top();
-        Data.pop();
-        std::cout << secund << " * " << first<< " = " << secund * first << std::endl;
-        Data.push(secund * first);
-        std::cout << Data.top() << std::endl;
-    }
-}
-
-void RPN::Subtraction(std::string &value){
-
-    if (value == "-"){
-        int first;
-        int secund;
-        first = Data.top();
-        Data.pop();
-        secund = Data.top();
-        Data.pop();
-        std::cout << secund << " - " << first << " = " << secund - first << std::endl;
-        Data.push(secund - first);
-        std::cout << Data.top() << std::endl;
-    }
-}
-
-void RPN::Division(std::string &value){
-    if (value == "/"){
-        int first;
-        int secund;
-        first = Data.top();
-        Data.pop();
-        secund = Data.top();
-        Data.pop();
-        std::cout << secund << " / " << first<< " = " << secund / first << std::endl;
-        Data.push(secund / first);
-        std::cout << Data.top() << std::endl;
-    }
-}
-
-
-void RPN::RPNExpression(std::string expression){
+void RPN::RPNExpression(char *expression){
     std::istringstream iss(expression);
-    std::string value;
 
-    while (std::getline(iss,value, ' ')) {
-        if (value.empty())
-            continue;
-        if ((std::isdigit(value[0]) && value.size() == 1) 
-            || (value [0] == '-' && std::isdigit(value[1]) && value.size() == 2))
+    for(int i = 0; expression[i]; i++) {
+        if (expression[i] == ' ')
+            continue;;
+        if (std::isdigit(expression[i]))
         {
-            Data.push(std::stoi(value));
+            Data.push(expression[i] - '0');
             continue;
         }
-        else if (!(value == "+" || value == "-" || value == "*" || value == "/"))
+        else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/')
+        {
+            if (Data.size() < 2)
+                throw std::runtime_error("ERROR");
+            int first;
+            int secund;
+            first = Data.top();
+            Data.pop();
+            secund = Data.top();
+            Data.pop();
+            if (expression[i] == '+')
+                Data.push(secund + first);
+            else if (expression[i] == '-')
+                Data.push(secund - first);
+            else if (expression[i] == '*')
+                Data.push(secund * first);
+            else if (expression[i] == '/')
+                Data.push(secund / first);
+        }
+        else
             throw std::runtime_error("ERROR"); 
-        while(Data.size() >= 2)
-        {
-            Addition(value);
-            Subtraction(value);
-            multiplication(value);
-            Division(value);
-        }
 
     }
-    while (!Data.empty())
-    {
-        std::cout << Data.top() << " ";
-        Data.pop();
-    }
+    if (Data.size() != 1 )
+            throw std::runtime_error("ERROR"); 
+    std::cout << Data.top();
 }
